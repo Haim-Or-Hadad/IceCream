@@ -1,0 +1,6 @@
+C:\Users\haimo\source\repos\IceCreamShop1\IceCreamShop1\obj\Debug\IceCreamShop1.csproj.AssemblyReference.cache
+C:\Users\haimo\source\repos\IceCreamShop1\IceCreamShop1\obj\Debug\IceCreamShop1.csproj.SuggestedBindingRedirects.cache
+C:\Users\haimo\source\repos\IceCreamShop1\IceCreamShop1\obj\Debug\IceCreamShop1.Form1.resources
+C:\Users\haimo\source\repos\IceCreamShop1\IceCreamShop1\obj\Debug\IceCreamShop1.Properties.Resources.resources
+C:\Users\haimo\source\repos\IceCreamShop1\IceCreamShop1\obj\Debug\IceCreamShop1.csproj.GenerateResource.cache
+C:\Users\haimo\source\repos\IceCreamShop1\IceCreamShop1\obj\Debug\IceCreamShop1.csproj.CoreCompileInputs.cache
