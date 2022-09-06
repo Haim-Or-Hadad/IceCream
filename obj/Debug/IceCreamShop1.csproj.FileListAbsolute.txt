@@ -9,3 +9,14 @@ C:\Users\haimo\source\repos\IceCreamShop1\IceCreamShop1\bin\Debug\IceCreamShop1.
 C:\Users\haimo\source\repos\IceCreamShop1\IceCreamShop1\bin\Debug\IceCreamShop1.pdb
 C:\Users\haimo\source\repos\IceCreamShop1\IceCreamShop1\obj\Debug\IceCreamShop1.exe
 C:\Users\haimo\source\repos\IceCreamShop1\IceCreamShop1\obj\Debug\IceCreamShop1.pdb
+C:\Users\ASUS\Source\Repos\IceCream\obj\Debug\IceCreamShop1.csproj.AssemblyReference.cache
+C:\Users\ASUS\Source\Repos\IceCream\obj\Debug\IceCreamShop1.csproj.SuggestedBindingRedirects.cache
+C:\Users\ASUS\Source\Repos\IceCream\obj\Debug\IceCreamShop1.Form1.resources
+C:\Users\ASUS\Source\Repos\IceCream\obj\Debug\IceCreamShop1.Properties.Resources.resources
+C:\Users\ASUS\Source\Repos\IceCream\obj\Debug\IceCreamShop1.csproj.GenerateResource.cache
+C:\Users\ASUS\Source\Repos\IceCream\obj\Debug\IceCreamShop1.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Source\Repos\IceCream\obj\Debug\IceCreamShop1.exe
+C:\Users\ASUS\Source\Repos\IceCream\obj\Debug\IceCreamShop1.pdb
+C:\Users\ASUS\Source\Repos\IceCream\bin\Debug\IceCreamShop1.exe.config
+C:\Users\ASUS\Source\Repos\IceCream\bin\Debug\IceCreamShop1.exe
+C:\Users\ASUS\Source\Repos\IceCream\bin\Debug\IceCreamShop1.pdb

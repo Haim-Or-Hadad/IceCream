@@ -36,8 +36,8 @@ namespace IcecreamMenu
                 throw new Exception("cannot add one morei topp - don't be pig");
             }
             //if order include Chocolate or Mikopelet you can't add HotChocolate
-            if (this.BallFlavors.Contains(Flavor.Chocolate) 
-                || this.BallFlavors.Contains(Flavor.Mikopelet)
+            if ((this.BallFlavors.Contains(Flavor.Chocolate) 
+                || this.BallFlavors.Contains(Flavor.Mikopelet))
                 && topType == Toppings.HotChocolate)
             {
                 throw new Exception("cannot add HotChocolate - The chef's dish must not be changed");

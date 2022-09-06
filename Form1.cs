@@ -16,6 +16,7 @@ namespace IceCreamShop1
     public partial class Form1 : Form
     {
         BLAccess newBl = new BLAccess();
+        Order order;
 
         
         public Form1()
@@ -25,26 +26,15 @@ namespace IceCreamShop1
 
         public void ClientOrder()
         {
-            Order order = newBl.newOrder();
-            button1.Click += (sender, e) => choose_Cup(sender, e, order);
-            button2.Click += (sender, e) => flavorsType(sender, e, order);
+            order = newBl.newOrder();
+            button1.Click += (sender, e) => choose_Cup(sender, e);
 
         }
 
-        void flavorsType(Object sender, EventArgs e , Order order)
-        {
-            List<Flavor> flavors = new List<Flavor>();
-            for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
-            {
-                string str = checkedListBox1.CheckedItems[i].ToString();
-                order.addFlavor((Flavor)Enum.Parse(typeof(Flavor), str));
-                Console.WriteLine(str);
-            }  
-        }
-        private void choose_Cup(object sender, System.EventArgs e , Order order)
+        private void choose_Cup(object sender, System.EventArgs e)
         {
             Cups cup = new Cups();
-            if (reagular.Checked)
+            if (regular.Checked)
             {
                 special.Enabled = false;
                 box.Enabled = false;
@@ -52,41 +42,30 @@ namespace IceCreamShop1
             }
             else if (special.Checked)
             {
-                reagular.Enabled = false;
+                regular.Enabled = false;
                 box.Enabled = false;
                 cup = Cups.Special;
             }
             else
             {
-                reagular.Enabled = false;
+                regular.Enabled = false;
                 special.Enabled = false;
                 cup = Cups.Box;
             }
-            order.chooseCup(cup);
+            this.order.chooseCup(cup);
             Console.WriteLine(cup.ToString());
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string item = checkedListBox1.SelectedItem.ToString();
-            
-        }
 
         void run()
         {
-            Form1 form = new Form1();
-            string []vars = Enum.GetNames(typeof(Flavor));
-            foreach (string enumValue in vars)
-            {
-                form.checkedListBox1.Items.Add(enumValue, CheckState.Unchecked);
-            }
-            vars = Enum.GetNames(typeof(Toppings));
-            foreach (string enumValue in vars)
-            {
-                form.checkedListBox2.Items.Add(enumValue, CheckState.Unchecked);
-            }
             ClientOrder();
-            form.ShowDialog();
+            string[] vars = Enum.GetNames(typeof(Toppings));
+            foreach (string enumValue in vars)
+            {
+                this.toppingListbox.Items.Add(enumValue);
+            }
+            this.ShowDialog();
 ;        }
         static void Main(string[] args)
         {
@@ -94,31 +73,67 @@ namespace IceCreamShop1
             form.run();
         }
 
-        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
+
+        /// <summary>
+        /// Function that add the toppings picked frim the topping list box
+        /// </summary>
+        private void button3_Click(object sender, EventArgs e)
         {
-            if (checkedListBox2.CheckedItems.Contains("maple"))
+            try
             {
-                MessageBox.Show("yess!");
+                string selected_top = this.toppingListbox.SelectedItem.ToString();
+                this.order.addTop((Toppings)Enum.Parse(typeof(Toppings), selected_top));
+                this.order_summary.Items.Add(selected_top);
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show(err.Message, "Error!",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// The main function for the flavor buttons.
+        /// add the selected flavor to the order and display it in the Order summary
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void flavor_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string choosen_flavor = ((Button)sender).Text;
+                this.order.addFlavor((Flavor)Enum.Parse(typeof(Flavor), choosen_flavor));
+                this.order_summary.Items.Add(choosen_flavor);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void selected_flavor_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //no use delete later
+        }
 
-            foreach (string item in checkedListBox2.CheckedItems)
-            {
-                MessageBox.Show(item);
-            }
-            for(int i =0; i <checkedListBox2.Items.Count; i++)
-            {
-                checkedListBox2.Enabled = false;
-            }
-
-            }
-
-
-
-
+        /// <summary>
+        /// Rest the order
+        /// </summary>
+        private void rest_button_Click(object sender, EventArgs e)
+        {
+            this.order = newBl.newOrder();
+            this.order_summary.Items.Clear();
+            this.regular.Enabled = true;
+            this.special.Enabled = true;
+            this.box.Enabled = true;
+        }
     }
 
 }
