@@ -16,6 +16,8 @@ namespace IceCreamShop1
     public partial class Form1 : Form
     {
         BLAccess newBl = new BLAccess();
+
+        
         public Form1()
         {
             InitializeComponent();
@@ -24,23 +26,50 @@ namespace IceCreamShop1
         public void ClientOrder()
         {
             Order order = newBl.newOrder();
-
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
+            button1.Click += (sender, e) => choose_Cup(sender, e, order);
+            button2.Click += (sender, e) => flavorsType(sender, e, order);
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        void flavorsType(Object sender, EventArgs e , Order order)
         {
-
+            List<Flavor> flavors = new List<Flavor>();
+            for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+            {
+                string str = checkedListBox1.CheckedItems[i].ToString();
+                order.addFlavor((Flavor)Enum.Parse(typeof(Flavor), str));
+                Console.WriteLine(str);
+            }  
+        }
+        private void choose_Cup(object sender, System.EventArgs e , Order order)
+        {
+            Cups cup = new Cups();
+            if (reagular.Checked)
+            {
+                special.Enabled = false;
+                box.Enabled = false;
+                cup = Cups.Reagular;
+            }
+            else if (special.Checked)
+            {
+                reagular.Enabled = false;
+                box.Enabled = false;
+                cup = Cups.Special;
+            }
+            else
+            {
+                reagular.Enabled = false;
+                special.Enabled = false;
+                cup = Cups.Box;
+            }
+            order.chooseCup(cup);
+            Console.WriteLine(cup.ToString());
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string item = checkedListBox1.SelectedItem.ToString();
+            
         }
 
         void run()
@@ -56,6 +85,7 @@ namespace IceCreamShop1
             {
                 form.checkedListBox2.Items.Add(enumValue, CheckState.Unchecked);
             }
+            ClientOrder();
             form.ShowDialog();
 ;        }
         static void Main(string[] args)
@@ -86,31 +116,9 @@ namespace IceCreamShop1
 
             }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
 
 
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (reagular.Checked)
-            {
-                special.Enabled = false;
-                box.Enabled = false;
-            }
-            else if (special.Checked)
-            {
-                reagular.Enabled = false;
-                box.Enabled = false;
-            }
-            else
-            {
-                reagular.Enabled = false;
-                special.Enabled = false;
-            }
-        }
     }
 
 }
