@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace IcecreamMenu
 {
@@ -31,9 +31,9 @@ namespace IcecreamMenu
         public void addTop(Toppings topType)
         {
             //if this reagular cup so you can put two topping
-            if(this.cupType == Cups.Reagular && this.Topp.Count() == 2)
+            if(this.cupType == Cups.Reagular && this.Topp.Count == 2)
             {
-                throw new Exception("cannot add one more topp - don't be pig");
+                throw new Exception("cannot add one morei topp - don't be pig");
             }
             //if order include Chocolate or Mikopelet you can't add HotChocolate
             if (this.BallFlavors.Contains(Flavor.Chocolate) 

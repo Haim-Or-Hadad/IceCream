@@ -1,19 +1,20 @@
-﻿//using System;
+﻿using System;
 //using System.Data;
 //using DataAccessLayer;
 //using BusinessLogic;
 //using IcecreamMenu;
 //using System.Drawing;
 //using System.Windows.Forms;
+using IceCreamShop1;
  
-namespace winFormsapp { 
+//namespace winFormsapp { 
 
-public partial class PL : Form
-{
-   public  Form1()
-        {
-            In
-        }
+//public partial class PL : Form
+//{
+//   public  Form1()
+//        {
+//            In
+//        }
 //        BLAccess BL = new BLAccess();
 //        void calculateOrder()
 //    {
@@ -27,8 +28,7 @@ public partial class PL : Form
 //    }
 
 
-//    static void Main(string[] args)
-//    {
+
         
 //        int userInput = 0;
 //        do

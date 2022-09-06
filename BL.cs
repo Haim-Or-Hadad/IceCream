@@ -9,13 +9,13 @@ namespace BusinessLogic
         SqlAccess DataAccess = new SqlAccess();
       //*****need to add the functions*****//
         
-        public Boolean initDB()
+        public void initDB()
         {
             DataAccess.CreateDatabase();
             DataAccess.createTables();
             DataAccess.createIngred();
             DataAccess.fillIngred();
-            return true;
+            //return true;
         }
 
         public Order newOrder()
