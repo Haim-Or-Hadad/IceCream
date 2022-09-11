@@ -64,7 +64,7 @@ namespace DataAccessLayer
                 cmd.ExecuteNonQuery();
 
                 sql =
-                    "DROP TABLE IF EXISTS ISales;"+
+                    "DROP TABLE IF EXISTS Sales;"+
                     "CREATE TABLE Sales (" +
                     "Sid INT NOT NULL PRIMARY KEY IDENTITY(1,1), " +
                     "date VARCHAR(45) NOT NULL," +
@@ -135,9 +135,26 @@ namespace DataAccessLayer
             SqlCommand cmd;
             string sql;
             //foreach (Flavor fl in order.BallFlavors)
-              sql = $"INSERT INTO Sales VALUES('{order.date}','{order.price}');";
+            sql = $"INSERT INTO Sales VALUES('{order.date}','{order.price}');";
             cmd = new SqlCommand(sql, connection);
             cmd.ExecuteNonQuery();
+            int[] ingredients_list = new int[13];
+            foreach(var flavor in order.BallFlavors)
+            {
+                ingredients_list[(int)flavor]++;
+            }
+            foreach (var topping in order.Topp)
+            {
+                ingredients_list[(int)topping]++; 
+            }
+            for (int i = 0; i < ingredients_list.Length; i++) {
+                if (ingredients_list[i] > 0)
+                {
+                    sql = $"INSERT INTO Dishes VALUES('{i}','{order.order_id}','{ingredients_list[i]}');";
+                    cmd = new SqlCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                }
+            }
 
         }
     }

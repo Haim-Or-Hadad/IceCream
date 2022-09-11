@@ -52,6 +52,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.toppingListbox = new System.Windows.Forms.ListBox();
             this.rest_button = new System.Windows.Forms.Button();
+            this.proceed_button = new System.Windows.Forms.Button();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -148,9 +151,9 @@
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1046, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1046, 24);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -285,7 +288,7 @@
             // 
             // rest_button
             // 
-            this.rest_button.Location = new System.Drawing.Point(890, 392);
+            this.rest_button.Location = new System.Drawing.Point(715, 390);
             this.rest_button.Name = "rest_button";
             this.rest_button.Size = new System.Drawing.Size(81, 36);
             this.rest_button.TabIndex = 25;
@@ -293,11 +296,42 @@
             this.rest_button.UseVisualStyleBackColor = true;
             this.rest_button.Click += new System.EventHandler(this.rest_button_Click);
             // 
+            // proceed_button
+            // 
+            this.proceed_button.Location = new System.Drawing.Point(899, 392);
+            this.proceed_button.Name = "proceed_button";
+            this.proceed_button.Size = new System.Drawing.Size(75, 23);
+            this.proceed_button.TabIndex = 26;
+            this.proceed_button.Text = "proceed";
+            this.proceed_button.UseVisualStyleBackColor = true;
+            this.proceed_button.Click += new System.EventHandler(this.proceed_button_click);
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(1046, 24);
+            this.menuStrip2.TabIndex = 27;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(34, 27);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(90, 33);
+            this.button2.TabIndex = 28;
+            this.button2.Text = "login";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1046, 523);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.proceed_button);
             this.Controls.Add(this.rest_button);
             this.Controls.Add(this.toppingListbox);
             this.Controls.Add(this.label4);
@@ -321,6 +355,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
@@ -357,6 +392,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox toppingListbox;
         private System.Windows.Forms.Button rest_button;
+        private System.Windows.Forms.Button proceed_button;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.Button button2;
     }
 }
 

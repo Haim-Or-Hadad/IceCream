@@ -7,6 +7,7 @@ namespace BusinessLogic
     {
 
         SqlAccess DataAccess = new SqlAccess();
+        
       //*****need to add the functions*****//
         
         public void initDB()
@@ -27,8 +28,10 @@ namespace BusinessLogic
         {
             DataAccess.insertToDB(order);
         }
+        
+        
 
-
+        
     }
 }
 

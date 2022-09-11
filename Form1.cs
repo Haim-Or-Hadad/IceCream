@@ -134,6 +134,18 @@ namespace IceCreamShop1
             this.special.Enabled = true;
             this.box.Enabled = true;
         }
-    }
+
+        private void proceed_button_click(object sender, EventArgs e)
+        {
+            newBl.insertOrder(order);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            newBl.initDB();
+            button2.Enabled = false;
+        }
+    } 
+        
 
 }

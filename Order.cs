@@ -5,15 +5,18 @@ namespace IcecreamMenu
 {
     public class Order
     {
+        public static int counter = 1;
         public List<Flavor> BallFlavors { get; set; }
         public List<Toppings> Topp { get; set; }
         public Cups cupType { get; set; }
         public string date { get; set; }
         public int price { get; set; }
+        public int order_id { get; set; }
 
 
         public Order(Cups cup = Cups.Reagular)
         {
+            this.order_id = counter++;
             this.price = 0;
             this.Topp = new List<Toppings>();
             this.BallFlavors = new List<Flavor>();
