@@ -145,6 +145,13 @@ namespace IceCreamShop1
             newBl.initDB();
             button2.Enabled = false;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form2 newform = new Form2();
+            
+            newform.Show();
+        }
     } 
         
 
