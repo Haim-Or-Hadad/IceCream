@@ -29,9 +29,22 @@ namespace BusinessLogic
             DataAccess.insertToDB(order);
         }
         
+        public string show_report(string date)
+        {
+            string ans =DataAccess.SalesSum(date);
+            return ans;
+        }
         
+        public string showUnfinished_Sales()
+        {
+            return DataAccess.UnfinishedSale();
+        }
 
-        
+
+        public string showBestFlavor()
+        {
+            return DataAccess.best_falvor();
+        }
     }
 }
 

@@ -128,18 +128,25 @@ namespace IceCreamShop1
         /// </summary>
         private void rest_button_Click(object sender, EventArgs e)
         {
+            this.order.price = -1;
+            newBl.insertOrder(order);
+            reset_order(order);
+        }
+
+        private void proceed_button_click(object sender, EventArgs e)
+        {
+            newBl.insertOrder(order);
+            reset_order(order);
+        }
+
+        public void reset_order(Order order)
+        {
             this.order = newBl.newOrder();
             this.order_summary.Items.Clear();
             this.regular.Enabled = true;
             this.special.Enabled = true;
             this.box.Enabled = true;
         }
-
-        private void proceed_button_click(object sender, EventArgs e)
-        {
-            newBl.insertOrder(order);
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             newBl.initDB();
@@ -148,9 +155,14 @@ namespace IceCreamShop1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form2 newform = new Form2();
+            Form2 newform = new Form2(newBl,order);
             
             newform.Show();
+        }
+
+        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     } 
         

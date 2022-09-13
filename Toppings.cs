@@ -4,8 +4,8 @@ namespace IcecreamMenu
 {
     public enum Toppings
     {
-        HotChocolate = 10,
-        Maple = 11,
-        Peanuts = 12
+        HotChocolate = 1,
+        Maple = 2,
+        Peanuts = 3
     }
 }

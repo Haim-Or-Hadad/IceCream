@@ -4,9 +4,9 @@ namespace IcecreamMenu
 {
     public enum Cups
     {
-        Reagular,
-        Special,
-        Box
+        Reagular = 13,
+        Special= 14,
+        Box=15 
     }
 
 }
