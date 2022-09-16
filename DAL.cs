@@ -1,4 +1,3 @@
-
 using BusinessLogic;
 using System.Collections;
 using IcecreamMenu;
@@ -43,6 +42,7 @@ namespace DataAccessLayer
             }
             return true;
         }
+
         public Boolean createTables()
         {
 
@@ -139,11 +139,9 @@ namespace DataAccessLayer
             cmd = new SqlCommand(sql, connection);
             cmd.ExecuteNonQuery();
             int[] ingredients_list = new int[14];
-            //Dictionary<int, string> phonebook = new Dictionary<int, string>();
             foreach (var flavor in order.BallFlavors)
             {
                 ingredients_list[(int)flavor]++;
-                int match1 = (int)flavor;
                 
             }
             foreach (var topping in order.Topp)
@@ -216,7 +214,7 @@ namespace DataAccessLayer
         {
             SqlConnection connection = connectSql();
             connection.Open();
-            string unfinishedData = "The the most popular flavor is: \n";
+            string popularFlavor = "The the most popular flavor is: \n";
             string sql = $"SELECT TOP(1) *" +
                          "FROM Ingredients "+
                          "INNER JOIN"+
@@ -231,13 +229,65 @@ namespace DataAccessLayer
             SqlDataReader Sqlreader = cmd.ExecuteReader();
             while (Sqlreader.Read())
             {
-                unfinishedData += "SID: " + Sqlreader["ingredID"].ToString() + " Name: " + Sqlreader["name"].ToString() + "total bought: " + Sqlreader["total"].ToString();
+                popularFlavor +=  "SID: " + Sqlreader["ingredID"].ToString() + " Name: " + Sqlreader["name"].ToString() + " Total bought: " + Sqlreader["total"].ToString();
             }
             Sqlreader.Close();
 
-            return unfinishedData;
+            return popularFlavor;
         }
-        
+
+        public string best_topping()
+        {
+            SqlConnection connection = connectSql();
+            connection.Open();
+            string popularTopping = "The the most popular topping is: \n";
+            string sql = $"SELECT TOP(1) *" +
+                         "FROM Ingredients " +
+                         "INNER JOIN" +
+                         "(SELECT SUM(amount) as total , " +
+                         "ingredID " +
+                         "FROM Dishes " +
+                         "WHERE ingredID >= 1 AND ingredID <=3 " +
+                         "GROUP BY ingredID) as table1 " +
+                         "ON table1.ingredID = Ingredients.ingredID " +
+                         "ORDER BY table1.total DESC;";
+            SqlCommand cmd = new SqlCommand(sql, connection);
+            SqlDataReader Sqlreader = cmd.ExecuteReader();
+            while (Sqlreader.Read())
+            {
+                popularTopping +=
+                    "SID: " + Sqlreader["ingredID"].ToString() + " Name: " + Sqlreader["name"].ToString() + " Total bought: " + Sqlreader["total"].ToString();
+            }
+            Sqlreader.Close();
+
+            return popularTopping;
+        }
+        public string best_cup()
+        {
+            SqlConnection connection = connectSql();
+            connection.Open();
+            string popularCup = "The the most popular cup is: \n";
+            string sql = $"SELECT TOP(1) *" +
+                         "FROM Ingredients " +
+                         "INNER JOIN" +
+                         "(SELECT SUM(amount) as total , " +
+                         "ingredID " +
+                         "FROM Dishes " +
+                         "WHERE ingredID >= 14" +
+                         "GROUP BY ingredID) as table1 " +
+                         "ON table1.ingredID = Ingredients.ingredID " +
+                         "ORDER BY table1.total DESC;";
+            SqlCommand cmd = new SqlCommand(sql, connection);
+            SqlDataReader Sqlreader = cmd.ExecuteReader();
+            while (Sqlreader.Read())
+            {
+                popularCup +=
+                    "SID: " + Sqlreader["ingredID"].ToString() + " Name: " + Sqlreader["name"].ToString() + " Total bought: " + Sqlreader["total"].ToString();
+            }
+            Sqlreader.Close();
+
+            return popularCup;
+        }
 
     }
 

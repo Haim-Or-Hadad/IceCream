@@ -1,5 +1,7 @@
 using DataAccessLayer;
 using IcecreamMenu;
+using MongoDB.Driver;
+using System;
 
 namespace BusinessLogic
 {
@@ -7,18 +9,29 @@ namespace BusinessLogic
     {
 
         SqlAccess DataAccess = new SqlAccess();
-        
+        mongoDB_DAL mongoDB = new mongoDB_DAL();
+        Boolean sql = true;
       //*****need to add the functions*****//
         
         public void initDB()
         {
-            DataAccess.CreateDatabase();
-            DataAccess.createTables();
-            DataAccess.createIngred();
-            DataAccess.fillIngred();
-            //return true;
+            if (sql)
+            {
+                DataAccess.CreateDatabase();
+                DataAccess.createTables();
+                DataAccess.createIngred();
+                DataAccess.fillIngred();
+            }
+            else
+            {
+                mongoDB.connectNoSql();
+                mongoDB.createIngreadientsTable();
+            }
         }
-
+        public void change_to_noSQL()
+        {
+            this.sql=false;
+        }
         public Order newOrder()
         {
             Order order = new Order();
@@ -26,8 +39,15 @@ namespace BusinessLogic
         }
         public void insertOrder(Order order)
         {
-            DataAccess.insertToDB(order);
-        }
+            if (sql)
+            {
+                DataAccess.insertToDB(order);
+            }
+            else
+            {
+                mongoDB.createDishes_SalesTables(order);
+            }
+            }
         
         public string show_report(string date)
         {

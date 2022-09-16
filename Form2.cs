@@ -52,7 +52,7 @@ namespace IceCreamShop1
         private void button3_Click(object sender, EventArgs e)
         {
             MessageBox.Show(" Order Date: " +  form2_order.date + "\n Order Price: " + form2_order.price
-                             +"\n Thank you for tasting Ilan and Haim balls");
+                             + "\n Thank you for your purchase");
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -72,6 +72,11 @@ namespace IceCreamShop1
         private void button5_Click(object sender, EventArgs e)
         {
             MessageBox.Show(form2_bl.showBestFlavor());
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            form2_bl.change_to_noSQL();
         }
 
         //show ebd dat report
