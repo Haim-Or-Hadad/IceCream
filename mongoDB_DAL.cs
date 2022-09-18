@@ -2,7 +2,13 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace DataAccessLayer
@@ -13,7 +19,7 @@ namespace DataAccessLayer
         {
             try
             {
-                MongoClient mongoClient = new MongoClient("mongodb+srv://IceCream:ice123456@icecreamcluster.eauxj7x.mongodb.net/test");
+                MongoClient mongoClient = new MongoClient("mongodb+srv://IlanG:ilangold123@cluster0.w3kqxvc.mongodb.net/test");
                 IMongoDatabase iceCreamDB = mongoClient.GetDatabase("OurIceCream");
                 return iceCreamDB;
             }
@@ -28,6 +34,9 @@ namespace DataAccessLayer
         public void createIngreadientsTable()
         {
             IMongoDatabase db = connectNoSql();
+            db.DropCollection("Ingreidients");
+            db.DropCollection("Dishes");
+            db.DropCollection("Sales");
             var ingredients_coll = db.GetCollection<BsonDocument>("Ingreidients");
             int id_counter = 1;
             var topping_values = Enum.GetValues(typeof(Toppings));
@@ -54,10 +63,9 @@ namespace DataAccessLayer
         public void createDishes_SalesTables(Order order) {
 
             IMongoDatabase db = connectNoSql();
-            var Sales_coll = db.GetCollection<BsonDocument>("Sales");
-            string json = "{ 'Sid': '" + order.order_id + "', 'date': '" + order.date + "', 'price': '" + order.price + "'}";
-            Sales_coll.InsertOne(BsonDocument.Parse(json));
-
+            var dishesTable = db.GetCollection<BsonDocument>("Dishes");
+            //count the number of diffrent dishes so far.
+            var Did = dishesTable.Distinct<string>("salesID", "{}").ToList().Count +1;
             ////////////////////////////////
             int[] ingredients_list = new int[14];
             foreach (var flavor in order.BallFlavors)
@@ -69,20 +77,41 @@ namespace DataAccessLayer
             {
                 ingredients_list[(int)topping]++;
             }
-            var Dishes_coll = db.GetCollection<BsonDocument>("Dishes");
+            
 
             for (int i = 0; i < ingredients_list.Length; i++)
             {
 
                 if (ingredients_list[i] > 0)
                 {
-                    var filter = Builders<Order>.Filter.Gt("salesID", 0);
-                    int test = ((int)Dishes_coll.Count(filter)) + 1;
-                    json = "{ 'Did': '" + test + "', 'ingredID': '" + i + "', 'salesID': '" + order.order_id + "', 'amount': '" + ingredients_list[i] + "'}";
-                    Dishes_coll.InsertOne(BsonDocument.Parse(json));
+                    string json1 = "{ 'Did': '" + Did + "', 'ingredID': '" + i + "', 'salesID': '" + Did + "', 'amount': '" + ingredients_list[i] + "'}";
+                    dishesTable.InsertOne(BsonDocument.Parse(json1));
                 }
 
             }
+            var salesTable = db.GetCollection<BsonDocument>("Sales");
+            string json2 = "{ 'Sid': '" + Did + "', 'Date': '" + order.date + "', 'Price': '" + order.price + "'}";
+            salesTable.InsertOne(BsonDocument.Parse(json2));
+
+        }
+
+        public string SaleSum_Mongo(string orderDate)
+        {
+            IMongoDatabase db = connectNoSql();
+            var salesTable = db.GetCollection<BsonDocument>("Sales");
+            var filter = Builders<BsonDocument>.Filter.Regex("Date", new BsonRegularExpression(orderDate));
+            var result = salesTable.Find(filter).ToList();
+            int count = result.Count;
+            int sum = 0;
+            foreach (var item in result)
+            {
+                sum += item.GetValue("Price").ToInt32();
+            }
+            int avag = (count == 0) ? 0 : (sum / count);
+            string dailySales = orderDate + " Sales summary: \n Sales:" + count + " \n Income: " + sum + "\n Average Daily Sales: " + avag;
+
+
+            return dailySales;
         }
   
     

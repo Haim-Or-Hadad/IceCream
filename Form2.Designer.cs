@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.dailyReportButton = new System.Windows.Forms.Button();
+            this.billButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.unFinishedButton = new System.Windows.Forms.Button();
+            this.bestFlavorButton = new System.Windows.Forms.Button();
+            this.noSQLButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -47,75 +47,74 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // dailyReportButton
             // 
-            this.button2.Location = new System.Drawing.Point(22, 181);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(166, 63);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "report";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.dailyReportButton.Location = new System.Drawing.Point(12, 70);
+            this.dailyReportButton.Name = "dailyReportButton";
+            this.dailyReportButton.Size = new System.Drawing.Size(166, 63);
+            this.dailyReportButton.TabIndex = 3;
+            this.dailyReportButton.Text = "Daily Report";
+            this.dailyReportButton.UseVisualStyleBackColor = true;
+            this.dailyReportButton.Click += new System.EventHandler(this.DailyReport_Click);
             // 
-            // button3
+            // billButton
             // 
-            this.button3.Location = new System.Drawing.Point(235, 181);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(160, 63);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "bill";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.billButton.Location = new System.Drawing.Point(215, 70);
+            this.billButton.Name = "billButton";
+            this.billButton.Size = new System.Drawing.Size(160, 63);
+            this.billButton.TabIndex = 4;
+            this.billButton.Text = "Current Bill ";
+            this.billButton.UseVisualStyleBackColor = true;
+            this.billButton.Click += new System.EventHandler(this.BillButton_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(22, 144);
+            this.textBox1.Location = new System.Drawing.Point(22, 33);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(150, 22);
             this.textBox1.TabIndex = 5;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // button4
+            // unFinishedButton
             // 
-            this.button4.Location = new System.Drawing.Point(435, 184);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(189, 59);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Unfinished Order";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.unFinishedButton.Location = new System.Drawing.Point(414, 74);
+            this.unFinishedButton.Name = "unFinishedButton";
+            this.unFinishedButton.Size = new System.Drawing.Size(189, 59);
+            this.unFinishedButton.TabIndex = 6;
+            this.unFinishedButton.Text = "Unfinished Order";
+            this.unFinishedButton.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // bestFlavorButton
             // 
-            this.button5.Location = new System.Drawing.Point(118, 352);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(128, 68);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "best falvor";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.bestFlavorButton.Location = new System.Drawing.Point(646, 74);
+            this.bestFlavorButton.Name = "bestFlavorButton";
+            this.bestFlavorButton.Size = new System.Drawing.Size(128, 68);
+            this.bestFlavorButton.TabIndex = 7;
+            this.bestFlavorButton.Text = "Best Falvor";
+            this.bestFlavorButton.UseVisualStyleBackColor = true;
+            this.bestFlavorButton.Click += new System.EventHandler(this.bestFlavor_Click);
             // 
-            // button6
+            // noSQLButton
             // 
-            this.button6.Location = new System.Drawing.Point(255, 74);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(128, 54);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "noSQL";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.noSQLButton.Location = new System.Drawing.Point(12, 167);
+            this.noSQLButton.Name = "noSQLButton";
+            this.noSQLButton.Size = new System.Drawing.Size(128, 54);
+            this.noSQLButton.TabIndex = 8;
+            this.noSQLButton.Text = "noSQL";
+            this.noSQLButton.UseVisualStyleBackColor = true;
+            this.noSQLButton.Click += new System.EventHandler(this.Sql_NoSql);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.noSQLButton);
+            this.Controls.Add(this.bestFlavorButton);
+            this.Controls.Add(this.unFinishedButton);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.billButton);
+            this.Controls.Add(this.dailyReportButton);
             this.Controls.Add(this.button1);
             this.Name = "Form2";
             this.Text = "Form2";
@@ -129,11 +128,11 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button showReportButton;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button dailyReportButton;
+        private System.Windows.Forms.Button billButton;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button unFinishedButton;
+        private System.Windows.Forms.Button bestFlavorButton;
+        private System.Windows.Forms.Button noSQLButton;
     }
 }

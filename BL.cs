@@ -30,7 +30,14 @@ namespace BusinessLogic
         }
         public void change_to_noSQL()
         {
-            this.sql=false;
+            if (sql)
+            {
+                this.sql = false;
+            }
+            else
+            {
+                this.sql = false;
+            }
         }
         public Order newOrder()
         {
@@ -51,8 +58,14 @@ namespace BusinessLogic
         
         public string show_report(string date)
         {
-            string ans =DataAccess.SalesSum(date);
-            return ans;
+            if (sql)
+            {
+                return (DataAccess.SalesSum(date));
+            }
+            else
+            {
+                return( mongoDB.SaleSum_Mongo(date));
+            }
         }
         
         public string showUnfinished_Sales()

@@ -41,7 +41,7 @@ namespace IceCreamShop1
 
         }
         //report
-        private void button2_Click(object sender, EventArgs e)
+        private void DailyReport_Click(object sender, EventArgs e)
         {
             string var;
             var = textBox1.Text;
@@ -49,7 +49,7 @@ namespace IceCreamShop1
             MessageBox.Show(form2_bl.show_report(var));
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BillButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show(" Order Date: " +  form2_order.date + "\n Order Price: " + form2_order.price
                              + "\n Thank you for your purchase");
@@ -64,19 +64,27 @@ namespace IceCreamShop1
         {
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void unFinishedButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show(form2_bl.showUnfinished_Sales());
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void bestFlavor_Click(object sender, EventArgs e)
         {
             MessageBox.Show(form2_bl.showBestFlavor());
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void Sql_NoSql (object sender, EventArgs e)
         {
             form2_bl.change_to_noSQL();
+            if (noSQLButton.Text.Equals("noSQL"))
+            {
+                noSQLButton.Text = "SQL";
+            }
+            else
+            {
+                noSQLButton.Text = "noSQL";
+            }
         }
 
         //show ebd dat report
