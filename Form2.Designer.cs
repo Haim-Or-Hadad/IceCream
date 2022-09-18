@@ -37,27 +37,31 @@
             this.bestFlavorButton = new System.Windows.Forms.Button();
             this.noSQLButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.dateLabel = new System.Windows.Forms.Label();
+            this.DBLabel = new System.Windows.Forms.Label();
+            this.exampleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.PapayaWhip;
-            this.button1.Location = new System.Drawing.Point(1083, 575);
+            this.button1.Location = new System.Drawing.Point(812, 467);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(182, 51);
+            this.button1.Size = new System.Drawing.Size(136, 41);
             this.button1.TabIndex = 0;
-            this.button1.Text = "close";
+            this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dailyReportButton
             // 
-            this.dailyReportButton.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dailyReportButton.BackColor = System.Drawing.Color.Bisque;
             this.dailyReportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dailyReportButton.Location = new System.Drawing.Point(480, 359);
+            this.dailyReportButton.Location = new System.Drawing.Point(376, 336);
+            this.dailyReportButton.Margin = new System.Windows.Forms.Padding(2);
             this.dailyReportButton.Name = "dailyReportButton";
-            this.dailyReportButton.Size = new System.Drawing.Size(160, 39);
+            this.dailyReportButton.Size = new System.Drawing.Size(120, 32);
             this.dailyReportButton.TabIndex = 3;
             this.dailyReportButton.Text = "Daily Report";
             this.dailyReportButton.UseVisualStyleBackColor = false;
@@ -65,39 +69,45 @@
             // 
             // billButton
             // 
-            this.billButton.Location = new System.Drawing.Point(723, 165);
+            this.billButton.BackColor = System.Drawing.Color.Bisque;
+            this.billButton.Location = new System.Drawing.Point(542, 134);
+            this.billButton.Margin = new System.Windows.Forms.Padding(2);
             this.billButton.Name = "billButton";
-            this.billButton.Size = new System.Drawing.Size(168, 69);
+            this.billButton.Size = new System.Drawing.Size(126, 56);
             this.billButton.TabIndex = 4;
             this.billButton.Text = "Current Bill ";
-            this.billButton.UseVisualStyleBackColor = true;
+            this.billButton.UseVisualStyleBackColor = false;
             this.billButton.Click += new System.EventHandler(this.BillButton_Click);
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(182, 364);
+            this.textBox1.Location = new System.Drawing.Point(157, 339);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(285, 34);
+            this.textBox1.Size = new System.Drawing.Size(215, 28);
             this.textBox1.TabIndex = 5;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // unFinishedButton
             // 
-            this.unFinishedButton.Location = new System.Drawing.Point(723, 249);
+            this.unFinishedButton.BackColor = System.Drawing.Color.Bisque;
+            this.unFinishedButton.Location = new System.Drawing.Point(542, 202);
+            this.unFinishedButton.Margin = new System.Windows.Forms.Padding(2);
             this.unFinishedButton.Name = "unFinishedButton";
-            this.unFinishedButton.Size = new System.Drawing.Size(168, 61);
+            this.unFinishedButton.Size = new System.Drawing.Size(126, 50);
             this.unFinishedButton.TabIndex = 6;
             this.unFinishedButton.Text = "Unfinished Order";
-            this.unFinishedButton.UseVisualStyleBackColor = true;
+            this.unFinishedButton.UseVisualStyleBackColor = false;
             this.unFinishedButton.Click += new System.EventHandler(this.unFinishedButton_Click);
             // 
             // bestFlavorButton
             // 
             this.bestFlavorButton.BackColor = System.Drawing.Color.PeachPuff;
-            this.bestFlavorButton.Location = new System.Drawing.Point(1046, 237);
+            this.bestFlavorButton.Location = new System.Drawing.Point(784, 193);
+            this.bestFlavorButton.Margin = new System.Windows.Forms.Padding(2);
             this.bestFlavorButton.Name = "bestFlavorButton";
-            this.bestFlavorButton.Size = new System.Drawing.Size(187, 147);
+            this.bestFlavorButton.Size = new System.Drawing.Size(140, 119);
             this.bestFlavorButton.TabIndex = 7;
             this.bestFlavorButton.Text = "Best Falvor";
             this.bestFlavorButton.UseVisualStyleBackColor = false;
@@ -105,44 +115,74 @@
             // 
             // noSQLButton
             // 
-            this.noSQLButton.Location = new System.Drawing.Point(12, 12);
+            this.noSQLButton.BackColor = System.Drawing.Color.Bisque;
+            this.noSQLButton.Location = new System.Drawing.Point(9, 42);
+            this.noSQLButton.Margin = new System.Windows.Forms.Padding(2);
             this.noSQLButton.Name = "noSQLButton";
-            this.noSQLButton.Size = new System.Drawing.Size(166, 72);
+            this.noSQLButton.Size = new System.Drawing.Size(124, 58);
             this.noSQLButton.TabIndex = 8;
             this.noSQLButton.Text = "noSQL";
-            this.noSQLButton.UseVisualStyleBackColor = true;
+            this.noSQLButton.UseVisualStyleBackColor = false;
             this.noSQLButton.Click += new System.EventHandler(this.Sql_NoSql);
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.PeachPuff;
-            this.button2.Location = new System.Drawing.Point(1046, 84);
+            this.button2.Location = new System.Drawing.Point(784, 68);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(187, 137);
+            this.button2.Size = new System.Drawing.Size(140, 111);
             this.button2.TabIndex = 9;
             this.button2.Text = "Best Topping";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label1
+            // dateLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 369);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 29);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "insert a date";
+            this.dateLabel.AutoSize = true;
+            this.dateLabel.BackColor = System.Drawing.Color.Transparent;
+            this.dateLabel.Font = new System.Drawing.Font("Courier New", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateLabel.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.dateLabel.Location = new System.Drawing.Point(4, 344);
+            this.dateLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Size = new System.Drawing.Size(152, 20);
+            this.dateLabel.TabIndex = 10;
+            this.dateLabel.Text = "Insert a date";
+            // 
+            // DBLabel
+            // 
+            this.DBLabel.AutoSize = true;
+            this.DBLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DBLabel.Font = new System.Drawing.Font("Courier New", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.DBLabel.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.DBLabel.Location = new System.Drawing.Point(33, 21);
+            this.DBLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.DBLabel.Name = "DBLabel";
+            this.DBLabel.Size = new System.Drawing.Size(79, 16);
+            this.DBLabel.TabIndex = 11;
+            this.DBLabel.Text = "Change DB";
+            // 
+            // exampleLabel
+            // 
+            this.exampleLabel.AutoSize = true;
+            this.exampleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.exampleLabel.Location = new System.Drawing.Point(156, 369);
+            this.exampleLabel.Name = "exampleLabel";
+            this.exampleLabel.Size = new System.Drawing.Size(107, 13);
+            this.exampleLabel.TabIndex = 12;
+            this.exampleLabel.Text = "Example: 18-09-2022";
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cornsilk;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1277, 638);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(958, 518);
+            this.Controls.Add(this.exampleLabel);
+            this.Controls.Add(this.DBLabel);
+            this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.noSQLButton);
             this.Controls.Add(this.bestFlavorButton);
@@ -151,8 +191,10 @@
             this.Controls.Add(this.billButton);
             this.Controls.Add(this.dailyReportButton);
             this.Controls.Add(this.button1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Manager Settings";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -162,7 +204,6 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button showReportButton;
         private System.Windows.Forms.Button dailyReportButton;
         private System.Windows.Forms.Button billButton;
         private System.Windows.Forms.TextBox textBox1;
@@ -170,6 +211,8 @@
         private System.Windows.Forms.Button bestFlavorButton;
         private System.Windows.Forms.Button noSQLButton;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label dateLabel;
+        private System.Windows.Forms.Label DBLabel;
+        private System.Windows.Forms.Label exampleLabel;
     }
 }

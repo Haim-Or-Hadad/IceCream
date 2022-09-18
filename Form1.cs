@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using IcecreamMenu;
 using BusinessLogic;
@@ -22,12 +15,13 @@ namespace IceCreamShop1
         public Form1()
         {
             InitializeComponent();
+
         }
 
         public void ClientOrder()
         {
             order = newBl.newOrder();
-            button1.Click += (sender, e) => choose_Cup(sender, e);
+            addCupButton.Click += (sender, e) => choose_Cup(sender, e);
 
         }
 
@@ -60,6 +54,9 @@ namespace IceCreamShop1
         void run()
         {
             ClientOrder();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             string[] vars = Enum.GetNames(typeof(Toppings));
             foreach (string enumValue in vars)
             {
@@ -70,6 +67,7 @@ namespace IceCreamShop1
         static void Main(string[] args)
         {
             Form1 form = new Form1();
+
             form.run();
         }
 
@@ -151,7 +149,7 @@ namespace IceCreamShop1
         private void button2_Click(object sender, EventArgs e)
         {
             newBl.initDB();
-            button2.Enabled = false;
+            initDBButton.Enabled = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -161,10 +159,6 @@ namespace IceCreamShop1
             newform.Show();
         }
 
-        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
     } 
         
 

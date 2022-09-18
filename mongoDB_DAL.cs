@@ -151,7 +151,7 @@ namespace DataAccessLayer
             var bestFlavorId = Selling_list.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
             var bestFlavorName = Enum.GetName(typeof(Flavor), bestFlavorId);
             string popularFlavor = "The the most popular flavor is: \n";
-            popularFlavor += "ID: " + bestFlavorId + " Name: " + bestFlavorName + " Total bought: " + bestFlavorAmount;
+            popularFlavor += "ID: " + bestFlavorId + "\n Name: " + bestFlavorName + "\n Total bought: " + bestFlavorAmount;
             return popularFlavor;
         }
 
@@ -181,7 +181,7 @@ namespace DataAccessLayer
             var bestToppingId = Selling_list.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
             var bestToppingName = Enum.GetName(typeof(Toppings), bestToppingId);
             string popularTopping = "The the most popular Topping is: \n";
-            popularTopping += "ID: " + bestToppingId + " Name: " + bestToppingName + " Total bought: " + bestToppingAmount;
+            popularTopping += "ID: " + bestToppingId + "\n Name: " + bestToppingName + "\n Total bought: " + bestToppingAmount;
             return popularTopping;
         }
 

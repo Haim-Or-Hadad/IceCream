@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
 using IcecreamMenu;
@@ -24,6 +16,9 @@ namespace IceCreamShop1
             this.form2_bl = bl;
             this.form2_order = order;
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,15 +26,8 @@ namespace IceCreamShop1
             this.Close();
         }
 
-        private void from2_load(object sender, EventArgs e)
-        {
-            this.TopMost = true;
-        }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
         //report
         private void DailyReport_Click(object sender, EventArgs e)
         {
@@ -71,11 +59,6 @@ namespace IceCreamShop1
              
         }
 
-        private void bestFlavor_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(form2_bl.showBestFlavor());
-        }
-
         private void Sql_NoSql (object sender, EventArgs e)
         {
             form2_bl.change_to_noSQL();
@@ -89,9 +72,9 @@ namespace IceCreamShop1
             }
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void bestFlavor_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(form2_bl.showBestFlavor());
         }
 
         private void button2_Click(object sender, EventArgs e)
