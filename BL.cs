@@ -70,13 +70,39 @@ namespace BusinessLogic
         
         public string showUnfinished_Sales()
         {
-            return DataAccess.UnfinishedSale();
-        }
+           if (sql)
+            {
+                return DataAccess.UnfinishedSale();
+            }
+            else
+            {
+                return mongoDB.mongo_UnfinishedSale();
+            }
+            }
 
 
         public string showBestFlavor()
         {
-            return DataAccess.best_falvor();
+            if (sql)
+            {
+                return DataAccess.best_falvor();
+            }
+            else
+            {
+                return (mongoDB.mongo_best_falvor());
+            }
+        }
+
+        public string showBestTopping()
+        {
+            if(sql)
+            {
+                return DataAccess.best_topping();
+            }
+            else
+            {
+                return mongoDB.mongo_best_Topping();
+            }
         }
     }
 }

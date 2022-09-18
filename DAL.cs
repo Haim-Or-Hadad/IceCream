@@ -229,7 +229,7 @@ namespace DataAccessLayer
             SqlDataReader Sqlreader = cmd.ExecuteReader();
             while (Sqlreader.Read())
             {
-                popularFlavor +=  "SID: " + Sqlreader["ingredID"].ToString() + " Name: " + Sqlreader["name"].ToString() + " Total bought: " + Sqlreader["total"].ToString();
+                popularFlavor +=  "ID: " + Sqlreader["ingredID"].ToString() + " Name: " + Sqlreader["name"].ToString() + " Total bought: " + Sqlreader["total"].ToString();
             }
             Sqlreader.Close();
 
@@ -261,32 +261,6 @@ namespace DataAccessLayer
             Sqlreader.Close();
 
             return popularTopping;
-        }
-        public string best_cup()
-        {
-            SqlConnection connection = connectSql();
-            connection.Open();
-            string popularCup = "The the most popular cup is: \n";
-            string sql = $"SELECT TOP(1) *" +
-                         "FROM Ingredients " +
-                         "INNER JOIN" +
-                         "(SELECT SUM(amount) as total , " +
-                         "ingredID " +
-                         "FROM Dishes " +
-                         "WHERE ingredID >= 14" +
-                         "GROUP BY ingredID) as table1 " +
-                         "ON table1.ingredID = Ingredients.ingredID " +
-                         "ORDER BY table1.total DESC;";
-            SqlCommand cmd = new SqlCommand(sql, connection);
-            SqlDataReader Sqlreader = cmd.ExecuteReader();
-            while (Sqlreader.Read())
-            {
-                popularCup +=
-                    "SID: " + Sqlreader["ingredID"].ToString() + " Name: " + Sqlreader["name"].ToString() + " Total bought: " + Sqlreader["total"].ToString();
-            }
-            Sqlreader.Close();
-
-            return popularCup;
         }
 
     }

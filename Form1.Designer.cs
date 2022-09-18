@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -37,7 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.chocolate_button = new System.Windows.Forms.Button();
             this.strawberry_button = new System.Windows.Forms.Button();
             this.vanilla_button = new System.Windows.Forms.Button();
@@ -53,25 +53,25 @@
             this.toppingListbox = new System.Windows.Forms.ListBox();
             this.rest_button = new System.Windows.Forms.Button();
             this.proceed_button = new System.Windows.Forms.Button();
-            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(97, 270);
+            this.button1.BackColor = System.Drawing.Color.Bisque;
+            this.button1.Location = new System.Drawing.Point(343, 256);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 50);
+            this.button1.Size = new System.Drawing.Size(137, 50);
             this.button1.TabIndex = 0;
             this.button1.Text = "done";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.choose_Cup);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(489, 274);
+            this.button3.Location = new System.Drawing.Point(791, 233);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(108, 46);
@@ -83,8 +83,8 @@
             // regular
             // 
             this.regular.AutoSize = true;
-            this.regular.BackColor = System.Drawing.Color.RosyBrown;
-            this.regular.Location = new System.Drawing.Point(97, 180);
+            this.regular.BackColor = System.Drawing.Color.Bisque;
+            this.regular.Location = new System.Drawing.Point(381, 166);
             this.regular.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.regular.Name = "regular";
             this.regular.Size = new System.Drawing.Size(70, 20);
@@ -96,8 +96,8 @@
             // special
             // 
             this.special.AutoSize = true;
-            this.special.BackColor = System.Drawing.Color.RosyBrown;
-            this.special.Location = new System.Drawing.Point(97, 206);
+            this.special.BackColor = System.Drawing.Color.Bisque;
+            this.special.Location = new System.Drawing.Point(381, 192);
             this.special.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.special.Name = "special";
             this.special.Size = new System.Drawing.Size(72, 20);
@@ -109,8 +109,8 @@
             // box
             // 
             this.box.AutoSize = true;
-            this.box.BackColor = System.Drawing.Color.RosyBrown;
-            this.box.Location = new System.Drawing.Point(97, 231);
+            this.box.BackColor = System.Drawing.Color.Bisque;
+            this.box.Location = new System.Drawing.Point(381, 217);
             this.box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.box.Name = "box";
             this.box.Size = new System.Drawing.Size(50, 20);
@@ -122,8 +122,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Bisque;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(111, 142);
+            this.label1.Location = new System.Drawing.Point(395, 128);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 23);
             this.label1.TabIndex = 7;
@@ -132,8 +133,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.PeachPuff;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(290, 123);
+            this.label2.Location = new System.Drawing.Point(575, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 23);
             this.label2.TabIndex = 9;
@@ -142,129 +144,130 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(496, 142);
+            this.label3.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(786, 75);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 23);
+            this.label3.Size = new System.Drawing.Size(111, 33);
             this.label3.TabIndex = 10;
             this.label3.Text = "Topping";
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Location = new System.Drawing.Point(0, 28);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1046, 24);
-            this.menuStrip1.TabIndex = 11;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
             // chocolate_button
             // 
-            this.chocolate_button.Location = new System.Drawing.Point(282, 158);
+            this.chocolate_button.BackColor = System.Drawing.Color.PeachPuff;
+            this.chocolate_button.Location = new System.Drawing.Point(567, 80);
             this.chocolate_button.Name = "chocolate_button";
             this.chocolate_button.Size = new System.Drawing.Size(92, 23);
             this.chocolate_button.TabIndex = 12;
             this.chocolate_button.Text = "Chocolate";
-            this.chocolate_button.UseVisualStyleBackColor = true;
+            this.chocolate_button.UseVisualStyleBackColor = false;
             this.chocolate_button.Click += new System.EventHandler(this.flavor_button_Click);
             // 
             // strawberry_button
             // 
-            this.strawberry_button.Location = new System.Drawing.Point(282, 187);
+            this.strawberry_button.BackColor = System.Drawing.Color.PeachPuff;
+            this.strawberry_button.Location = new System.Drawing.Point(567, 109);
             this.strawberry_button.Name = "strawberry_button";
             this.strawberry_button.Size = new System.Drawing.Size(92, 23);
             this.strawberry_button.TabIndex = 13;
             this.strawberry_button.Text = "Strawberry";
-            this.strawberry_button.UseVisualStyleBackColor = true;
+            this.strawberry_button.UseVisualStyleBackColor = false;
             this.strawberry_button.Click += new System.EventHandler(this.flavor_button_Click);
             // 
             // vanilla_button
             // 
-            this.vanilla_button.Location = new System.Drawing.Point(282, 216);
+            this.vanilla_button.BackColor = System.Drawing.Color.PeachPuff;
+            this.vanilla_button.Location = new System.Drawing.Point(567, 138);
             this.vanilla_button.Name = "vanilla_button";
             this.vanilla_button.Size = new System.Drawing.Size(92, 23);
             this.vanilla_button.TabIndex = 14;
             this.vanilla_button.Text = "Vanilla";
-            this.vanilla_button.UseVisualStyleBackColor = true;
+            this.vanilla_button.UseVisualStyleBackColor = false;
             this.vanilla_button.Click += new System.EventHandler(this.flavor_button_Click);
             // 
             // banana_button
             // 
-            this.banana_button.Location = new System.Drawing.Point(282, 245);
+            this.banana_button.BackColor = System.Drawing.Color.PeachPuff;
+            this.banana_button.Location = new System.Drawing.Point(567, 167);
             this.banana_button.Name = "banana_button";
             this.banana_button.Size = new System.Drawing.Size(92, 23);
             this.banana_button.TabIndex = 15;
             this.banana_button.Text = "Banana";
-            this.banana_button.UseVisualStyleBackColor = true;
+            this.banana_button.UseVisualStyleBackColor = false;
             this.banana_button.Click += new System.EventHandler(this.flavor_button_Click);
             // 
             // mango_button
             // 
-            this.mango_button.Location = new System.Drawing.Point(282, 274);
+            this.mango_button.BackColor = System.Drawing.Color.PeachPuff;
+            this.mango_button.Location = new System.Drawing.Point(567, 196);
             this.mango_button.Name = "mango_button";
             this.mango_button.Size = new System.Drawing.Size(92, 23);
             this.mango_button.TabIndex = 16;
             this.mango_button.Text = "Mango";
-            this.mango_button.UseVisualStyleBackColor = true;
+            this.mango_button.UseVisualStyleBackColor = false;
             this.mango_button.Click += new System.EventHandler(this.flavor_button_Click);
             // 
             // coconut_button
             // 
-            this.coconut_button.Location = new System.Drawing.Point(282, 303);
+            this.coconut_button.BackColor = System.Drawing.Color.PeachPuff;
+            this.coconut_button.Location = new System.Drawing.Point(567, 225);
             this.coconut_button.Name = "coconut_button";
             this.coconut_button.Size = new System.Drawing.Size(92, 23);
             this.coconut_button.TabIndex = 17;
             this.coconut_button.Text = "Coconut";
-            this.coconut_button.UseVisualStyleBackColor = true;
+            this.coconut_button.UseVisualStyleBackColor = false;
             this.coconut_button.Click += new System.EventHandler(this.flavor_button_Click);
             // 
             // matcha_button
             // 
-            this.matcha_button.Location = new System.Drawing.Point(282, 332);
+            this.matcha_button.BackColor = System.Drawing.Color.PeachPuff;
+            this.matcha_button.Location = new System.Drawing.Point(567, 254);
             this.matcha_button.Name = "matcha_button";
             this.matcha_button.Size = new System.Drawing.Size(92, 23);
             this.matcha_button.TabIndex = 18;
             this.matcha_button.Text = "Matcha";
-            this.matcha_button.UseVisualStyleBackColor = true;
+            this.matcha_button.UseVisualStyleBackColor = false;
             this.matcha_button.Click += new System.EventHandler(this.flavor_button_Click);
             // 
             // pistachio_button
             // 
-            this.pistachio_button.Location = new System.Drawing.Point(282, 361);
+            this.pistachio_button.BackColor = System.Drawing.Color.PeachPuff;
+            this.pistachio_button.Location = new System.Drawing.Point(567, 283);
             this.pistachio_button.Name = "pistachio_button";
             this.pistachio_button.Size = new System.Drawing.Size(92, 23);
             this.pistachio_button.TabIndex = 19;
             this.pistachio_button.Text = "Pistachio";
-            this.pistachio_button.UseVisualStyleBackColor = true;
+            this.pistachio_button.UseVisualStyleBackColor = false;
             this.pistachio_button.Click += new System.EventHandler(this.flavor_button_Click);
             // 
             // mikopelet_button
             // 
-            this.mikopelet_button.Location = new System.Drawing.Point(282, 390);
+            this.mikopelet_button.BackColor = System.Drawing.Color.PeachPuff;
+            this.mikopelet_button.Location = new System.Drawing.Point(567, 312);
             this.mikopelet_button.Name = "mikopelet_button";
             this.mikopelet_button.Size = new System.Drawing.Size(92, 23);
             this.mikopelet_button.TabIndex = 20;
             this.mikopelet_button.Text = "Mikopelet";
-            this.mikopelet_button.UseVisualStyleBackColor = true;
+            this.mikopelet_button.UseVisualStyleBackColor = false;
             this.mikopelet_button.Click += new System.EventHandler(this.flavor_button_Click);
             // 
             // mint_button
             // 
-            this.mint_button.Location = new System.Drawing.Point(282, 419);
+            this.mint_button.BackColor = System.Drawing.Color.PeachPuff;
+            this.mint_button.Location = new System.Drawing.Point(567, 341);
             this.mint_button.Name = "mint_button";
             this.mint_button.Size = new System.Drawing.Size(92, 23);
             this.mint_button.TabIndex = 21;
             this.mint_button.Text = "Mint";
-            this.mint_button.UseVisualStyleBackColor = true;
+            this.mint_button.UseVisualStyleBackColor = false;
             this.mint_button.Click += new System.EventHandler(this.flavor_button_Click);
             // 
             // order_summary
             // 
             this.order_summary.FormattingEnabled = true;
             this.order_summary.ItemHeight = 16;
-            this.order_summary.Location = new System.Drawing.Point(852, 94);
+            this.order_summary.Location = new System.Drawing.Point(1063, 64);
             this.order_summary.Name = "order_summary";
-            this.order_summary.Size = new System.Drawing.Size(165, 292);
+            this.order_summary.Size = new System.Drawing.Size(181, 308);
             this.order_summary.TabIndex = 22;
             this.order_summary.SelectedIndexChanged += new System.EventHandler(this.selected_flavor_SelectedIndexChanged);
             // 
@@ -272,9 +275,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(857, 47);
+            this.label4.Location = new System.Drawing.Point(1059, 18);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(148, 23);
+            this.label4.Size = new System.Drawing.Size(185, 29);
             this.label4.TabIndex = 23;
             this.label4.Text = "Order summary";
             // 
@@ -282,14 +285,14 @@
             // 
             this.toppingListbox.FormattingEnabled = true;
             this.toppingListbox.ItemHeight = 16;
-            this.toppingListbox.Location = new System.Drawing.Point(461, 180);
+            this.toppingListbox.Location = new System.Drawing.Point(740, 123);
             this.toppingListbox.Name = "toppingListbox";
-            this.toppingListbox.Size = new System.Drawing.Size(169, 84);
+            this.toppingListbox.Size = new System.Drawing.Size(213, 100);
             this.toppingListbox.TabIndex = 24;
             // 
             // rest_button
             // 
-            this.rest_button.Location = new System.Drawing.Point(715, 390);
+            this.rest_button.Location = new System.Drawing.Point(942, 361);
             this.rest_button.Name = "rest_button";
             this.rest_button.Size = new System.Drawing.Size(81, 36);
             this.rest_button.TabIndex = 25;
@@ -299,7 +302,7 @@
             // 
             // proceed_button
             // 
-            this.proceed_button.Location = new System.Drawing.Point(899, 392);
+            this.proceed_button.Location = new System.Drawing.Point(1109, 378);
             this.proceed_button.Name = "proceed_button";
             this.proceed_button.Size = new System.Drawing.Size(75, 23);
             this.proceed_button.TabIndex = 26;
@@ -307,19 +310,9 @@
             this.proceed_button.UseVisualStyleBackColor = true;
             this.proceed_button.Click += new System.EventHandler(this.proceed_button_click);
             // 
-            // menuStrip2
-            // 
-            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(1046, 28);
-            this.menuStrip2.TabIndex = 27;
-            this.menuStrip2.Text = "menuStrip2";
-            this.menuStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip2_ItemClicked);
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 94);
+            this.button2.Location = new System.Drawing.Point(12, 18);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 33);
             this.button2.TabIndex = 28;
@@ -329,9 +322,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(169, 27);
+            this.button4.Location = new System.Drawing.Point(12, 341);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(93, 32);
+            this.button4.Size = new System.Drawing.Size(143, 54);
             this.button4.TabIndex = 29;
             this.button4.Text = "worker";
             this.button4.UseVisualStyleBackColor = true;
@@ -341,7 +334,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1046, 523);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(1285, 642);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.proceed_button);
@@ -367,9 +361,6 @@
             this.Controls.Add(this.regular);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.menuStrip2);
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -390,7 +381,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button chocolate_button;
         private System.Windows.Forms.Button strawberry_button;
         private System.Windows.Forms.Button vanilla_button;
@@ -406,7 +396,6 @@
         private System.Windows.Forms.ListBox toppingListbox;
         private System.Windows.Forms.Button rest_button;
         private System.Windows.Forms.Button proceed_button;
-        private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
     }

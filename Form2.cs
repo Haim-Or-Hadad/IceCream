@@ -66,7 +66,9 @@ namespace IceCreamShop1
 
         private void unFinishedButton_Click(object sender, EventArgs e)
         {
+            
             MessageBox.Show(form2_bl.showUnfinished_Sales());
+             
         }
 
         private void bestFlavor_Click(object sender, EventArgs e)
@@ -86,6 +88,18 @@ namespace IceCreamShop1
                 noSQLButton.Text = "noSQL";
             }
         }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(form2_bl.showBestTopping());
+        }
+
+
 
         //show ebd dat report
 

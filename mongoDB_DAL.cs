@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -19,7 +20,7 @@ namespace DataAccessLayer
         {
             try
             {
-                MongoClient mongoClient = new MongoClient("mongodb+srv://IlanG:ilangold123@cluster0.w3kqxvc.mongodb.net/test");
+                MongoClient mongoClient = new MongoClient("mongodb+srv://IceCream:ice123456@icecreamcluster.eauxj7x.mongodb.net/test\r\n");
                 IMongoDatabase iceCreamDB = mongoClient.GetDatabase("OurIceCream");
                 return iceCreamDB;
             }
@@ -113,8 +114,79 @@ namespace DataAccessLayer
 
             return dailySales;
         }
-  
-    
+
+        public string mongo_UnfinishedSale()
+        {
+            IMongoDatabase db = connectNoSql();
+            var salesTable = db.GetCollection<BsonDocument>("Sales");
+            var filter = Builders<BsonDocument>.Filter.Regex("Price", new BsonRegularExpression("-1"));
+            var result = salesTable.Find(filter).ToList();
+            var count = result.Count;
+            return "There are " + count + " uncompleted orders.";
+        }
+
+        public string mongo_best_falvor()
+        {
+            IMongoDatabase db = connectNoSql();
+            var dishesTable = db.GetCollection<BsonDocument>("Dishes");
+            var filter = Builders<BsonDocument>.Filter.Empty;
+            IDictionary<int, int> Selling_list = new Dictionary<int, int>();
+            foreach (var item in dishesTable.Find(filter).ToListAsync().Result)
+            {
+                int ingredID = item.GetValue("ingredID").ToInt32();
+                if (ingredID >= 4 && ingredID <= 13)
+                {
+                    int amount = item.GetValue("amount").ToInt32();
+                    if (Selling_list.ContainsKey(ingredID))
+                    {
+                        Selling_list[ingredID] += amount;
+                    }
+                    else
+                    {
+                        Selling_list.Add(ingredID, amount);
+                    }
+                }
+            }
+            var bestFlavorAmount = Selling_list.Values.Max();
+            var bestFlavorId = Selling_list.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+            var bestFlavorName = Enum.GetName(typeof(Flavor), bestFlavorId);
+            string popularFlavor = "The the most popular flavor is: \n";
+            popularFlavor += "ID: " + bestFlavorId + " Name: " + bestFlavorName + " Total bought: " + bestFlavorAmount;
+            return popularFlavor;
+        }
+
+        public string mongo_best_Topping()
+        {
+            IMongoDatabase db = connectNoSql();
+            var dishesTable = db.GetCollection<BsonDocument>("Dishes");
+            var filter = Builders<BsonDocument>.Filter.Empty;
+            IDictionary<int, int> Selling_list = new Dictionary<int, int>();
+            foreach (var item in dishesTable.Find(filter).ToListAsync().Result)
+            {
+                int ingredID = item.GetValue("ingredID").ToInt32();
+                if (ingredID <= 3)
+                {
+                    int amount = item.GetValue("amount").ToInt32();
+                    if (Selling_list.ContainsKey(ingredID))
+                    {
+                        Selling_list[ingredID] += amount;
+                    }
+                    else
+                    {
+                        Selling_list.Add(ingredID, amount);
+                    }
+                }
+            }
+            var bestToppingAmount = Selling_list.Values.Max();
+            var bestToppingId = Selling_list.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+            var bestToppingName = Enum.GetName(typeof(Toppings), bestToppingId);
+            string popularTopping = "The the most popular Topping is: \n";
+            popularTopping += "ID: " + bestToppingId + " Name: " + bestToppingName + " Total bought: " + bestToppingAmount;
+            return popularTopping;
+        }
+
+
+
     }
 
 

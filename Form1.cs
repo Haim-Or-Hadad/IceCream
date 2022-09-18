@@ -129,6 +129,7 @@ namespace IceCreamShop1
         private void rest_button_Click(object sender, EventArgs e)
         {
             this.order.price = -1;
+
             newBl.insertOrder(order);
             reset_order(order);
         }
