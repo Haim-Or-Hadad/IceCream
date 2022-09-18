@@ -51,7 +51,7 @@
             this.order_summary = new System.Windows.Forms.ListBox();
             this.orderSumLabel = new System.Windows.Forms.Label();
             this.toppingListbox = new System.Windows.Forms.ListBox();
-            this.rest_button = new System.Windows.Forms.Button();
+            this.reset_button = new System.Windows.Forms.Button();
             this.finish_button = new System.Windows.Forms.Button();
             this.initDBButton = new System.Windows.Forms.Button();
             this.managerButton = new System.Windows.Forms.Button();
@@ -308,17 +308,17 @@
             this.toppingListbox.Size = new System.Drawing.Size(161, 82);
             this.toppingListbox.TabIndex = 24;
             // 
-            // rest_button
+            // reset_button
             // 
-            this.rest_button.BackColor = System.Drawing.Color.Bisque;
-            this.rest_button.Location = new System.Drawing.Point(778, 357);
-            this.rest_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.rest_button.Name = "rest_button";
-            this.rest_button.Size = new System.Drawing.Size(73, 24);
-            this.rest_button.TabIndex = 26;
-            this.rest_button.Text = "Rest Order";
-            this.rest_button.UseVisualStyleBackColor = false;
-            this.rest_button.Click += new System.EventHandler(this.rest_button_Click);
+            this.reset_button.BackColor = System.Drawing.Color.Bisque;
+            this.reset_button.Location = new System.Drawing.Point(778, 357);
+            this.reset_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reset_button.Name = "reset_button";
+            this.reset_button.Size = new System.Drawing.Size(73, 24);
+            this.reset_button.TabIndex = 26;
+            this.reset_button.Text = "Reset Order";
+            this.reset_button.UseVisualStyleBackColor = false;
+            this.reset_button.Click += new System.EventHandler(this.rest_button_Click);
             // 
             // finish_button
             // 
@@ -365,7 +365,7 @@
             this.Controls.Add(this.managerButton);
             this.Controls.Add(this.initDBButton);
             this.Controls.Add(this.finish_button);
-            this.Controls.Add(this.rest_button);
+            this.Controls.Add(this.reset_button);
             this.Controls.Add(this.toppingListbox);
             this.Controls.Add(this.orderSumLabel);
             this.Controls.Add(this.order_summary);
@@ -421,7 +421,7 @@
         private System.Windows.Forms.ListBox order_summary;
         private System.Windows.Forms.Label orderSumLabel;
         private System.Windows.Forms.ListBox toppingListbox;
-        private System.Windows.Forms.Button rest_button;
+        private System.Windows.Forms.Button reset_button;
         private System.Windows.Forms.Button finish_button;
         private System.Windows.Forms.Button initDBButton;
         private System.Windows.Forms.Button managerButton;
