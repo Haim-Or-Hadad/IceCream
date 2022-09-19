@@ -43,7 +43,12 @@ Save your customers orders and get your shop statistics in the manager settings 
 
 ## ERD and UML
 
-need to add.
+### UML
+![ClassDiagram1](https://user-images.githubusercontent.com/74299935/191016693-1bfc4a22-ea72-4682-9a2a-65f6bc568d7d.jpg)
+
+### ERD
+![ERD](https://user-images.githubusercontent.com/74299935/191016801-9d9c9f34-d8ed-4345-8c59-878644f12169.jpg)
+
 
 ## Authors
 [Ilan Gold](https://github.com/IlanG96)
