@@ -21,14 +21,19 @@ namespace IceCreamShop1
             this.MinimizeBox = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Close the manager settings window when pressed.
+        /// </summary>
+        private void closeButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
 
 
-        //report
+        /// <summary>
+        /// When clicked, get the date the user entered and show the daily report.
+        /// </summary>
         private void DailyReport_Click(object sender, EventArgs e)
         {
             string var;
@@ -37,21 +42,19 @@ namespace IceCreamShop1
             MessageBox.Show(form2_bl.show_report(var));
         }
 
+
+        /// <summary>
+        /// Show the customer bill when pressed
+        /// </summary>
         private void BillButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show(" Order Date: " +  form2_order.date + "\n Order Price: " + form2_order.price
                              + "\n Thank you for your purchase");
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            //MessageBox.Show(Order.)
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
+        /// <summary>
+        /// show all the unfinished order.
+        /// </summary>
         private void unFinishedButton_Click(object sender, EventArgs e)
         {
             
@@ -59,6 +62,9 @@ namespace IceCreamShop1
              
         }
 
+        /// <summary>
+        /// Selector Sql/NoSql database
+        /// </summary>
         private void Sql_NoSql (object sender, EventArgs e)
         {
             form2_bl.change_to_noSQL();
@@ -72,14 +78,29 @@ namespace IceCreamShop1
             }
         }
 
+        /// <summary>
+        /// Show the best flavor
+        /// </summary>
         private void bestFlavor_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(form2_bl.showBestFlavor());
+            MessageBox.Show(form2_bl.showBestSeller(0));
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Show the best topping
+        /// </summary>
+        private void bestToppingButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(form2_bl.showBestTopping());
+            MessageBox.Show(form2_bl.showBestSeller(1));
+        }
+
+        /// <summary>
+        /// Show the best overall seller
+        /// </summary>
+        private void bestItemButton_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show(form2_bl.showBestSeller(2));
         }
 
 

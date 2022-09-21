@@ -61,14 +61,19 @@ namespace DataAccessLayer
             }
         }
 
-        public void createDishes_SalesTables(Order order) {
+        public void MongoInsertToDB(Order order) {
 
             IMongoDatabase db = connectNoSql();
             var dishesTable = db.GetCollection<BsonDocument>("Dishes");
             //count the number of diffrent dishes so far.
             var Did = dishesTable.Distinct<string>("salesID", "{}").ToList().Count +1;
             ////////////////////////////////
-            int[] ingredients_list = new int[14];
+            int[] ingredients_list = new int[16];
+            if (order.BallFlavors.Count < 2 && order.Topp.Count >= 1 && order.cupType == Cups.Reagular)
+            {
+                throw new Exception("You need 2 ice cream balls to add toppings in a reagular cup");
+            }
+            ingredients_list[(int)order.cupType]++;
             foreach (var flavor in order.BallFlavors)
             {
                 ingredients_list[(int)flavor]++;
@@ -95,7 +100,11 @@ namespace DataAccessLayer
             salesTable.InsertOne(BsonDocument.Parse(json2));
 
         }
-
+        /// <summary>
+        /// Reuturn all the sales made at the given date.
+        /// </summary>
+        /// <param name="orderDate">The Date that the user want the sales from </param>
+        /// <returns></returns>
         public string SaleSum_Mongo(string orderDate)
         {
             IMongoDatabase db = connectNoSql();
@@ -115,6 +124,10 @@ namespace DataAccessLayer
             return dailySales;
         }
 
+        /// <summary>
+        /// return all the unfinished sales.
+        /// </summary>
+        /// <returns></returns>
         public string mongo_UnfinishedSale()
         {
             IMongoDatabase db = connectNoSql();
@@ -125,46 +138,61 @@ namespace DataAccessLayer
             return "There are " + count + " uncompleted orders.";
         }
 
-        public string mongo_best_falvor()
+        /// <summary>
+        /// Return the name id and amount of the best selling item according to the selector.
+        /// </summary>
+        /// <param name="selector">
+        /// 0-best flavor
+        /// 1-best topping
+        /// 2-overall
+        /// </param>
+        /// <returns></returns>
+        public string mongoBestSellers(int selector)
         {
             IMongoDatabase db = connectNoSql();
             var dishesTable = db.GetCollection<BsonDocument>("Dishes");
             var filter = Builders<BsonDocument>.Filter.Empty;
             IDictionary<int, int> Selling_list = new Dictionary<int, int>();
+            string popularSelection = "";
             foreach (var item in dishesTable.Find(filter).ToListAsync().Result)
             {
                 int ingredID = item.GetValue("ingredID").ToInt32();
-                if (ingredID >= 4 && ingredID <= 13)
+                if (selector == 0)
                 {
-                    int amount = item.GetValue("amount").ToInt32();
-                    if (Selling_list.ContainsKey(ingredID))
+                    if (ingredID >= 4 && ingredID <= 13)
                     {
-                        Selling_list[ingredID] += amount;
+                        int amount = item.GetValue("amount").ToInt32();
+                        if (Selling_list.ContainsKey(ingredID))
+                        {
+                            Selling_list[ingredID] += amount;
+                        }
+                        else
+                        {
+                            Selling_list.Add(ingredID, amount);
+                        }
                     }
-                    else
-                    {
-                        Selling_list.Add(ingredID, amount);
-                    }
-                }
-            }
-            var bestFlavorAmount = Selling_list.Values.Max();
-            var bestFlavorId = Selling_list.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
-            var bestFlavorName = Enum.GetName(typeof(Flavor), bestFlavorId);
-            string popularFlavor = "The the most popular flavor is: \n";
-            popularFlavor += "ID: " + bestFlavorId + "\n Name: " + bestFlavorName + "\n Total bought: " + bestFlavorAmount;
-            return popularFlavor;
-        }
+                     popularSelection = "The the most popular flavor is: \n";
 
-        public string mongo_best_Topping()
-        {
-            IMongoDatabase db = connectNoSql();
-            var dishesTable = db.GetCollection<BsonDocument>("Dishes");
-            var filter = Builders<BsonDocument>.Filter.Empty;
-            IDictionary<int, int> Selling_list = new Dictionary<int, int>();
-            foreach (var item in dishesTable.Find(filter).ToListAsync().Result)
-            {
-                int ingredID = item.GetValue("ingredID").ToInt32();
-                if (ingredID <= 3)
+
+                }
+                else if(selector == 1)
+                {
+                    if (ingredID <= 3)
+                    {
+                        int amount = item.GetValue("amount").ToInt32();
+                        if (Selling_list.ContainsKey(ingredID))
+                        {
+                            Selling_list[ingredID] += amount;
+                        }
+                        else
+                        {
+                            Selling_list.Add(ingredID, amount);
+                        }
+                    }
+                    popularSelection = "The the most popular Topping is: \n";
+
+                }
+                else
                 {
                     int amount = item.GetValue("amount").ToInt32();
                     if (Selling_list.ContainsKey(ingredID))
@@ -175,14 +203,31 @@ namespace DataAccessLayer
                     {
                         Selling_list.Add(ingredID, amount);
                     }
+                    popularSelection = "The the most popular Item is: \n";
+
                 }
+
             }
-            var bestToppingAmount = Selling_list.Values.Max();
-            var bestToppingId = Selling_list.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
-            var bestToppingName = Enum.GetName(typeof(Toppings), bestToppingId);
-            string popularTopping = "The the most popular Topping is: \n";
-            popularTopping += "ID: " + bestToppingId + "\n Name: " + bestToppingName + "\n Total bought: " + bestToppingAmount;
-            return popularTopping;
+            var popularSelectionAmount = Selling_list.Values.Max();
+            var popularSelectionId = Selling_list.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+            string popularSelectionName;
+            if (popularSelectionId <= 3)
+            {
+                popularSelectionName = Enum.GetName(typeof(Flavor), popularSelectionId);
+
+            }
+            else if (popularSelectionId>=4 && popularSelectionId<=13)
+            {
+                popularSelectionName = Enum.GetName(typeof(Toppings), popularSelectionId);
+
+            }
+            else
+            {
+                popularSelectionName = Enum.GetName(typeof(Cups), popularSelectionId);
+            }
+            var bestFlavorName = Enum.GetName(typeof(Flavor), popularSelectionId);
+            popularSelection += "ID: " + popularSelectionId + "\n Name: " + bestFlavorName + "\n Total bought: " + popularSelectionAmount;
+            return popularSelection;
         }
 
 

@@ -17,7 +17,9 @@ namespace IceCreamShop1
             InitializeComponent();
 
         }
-
+        /// <summary>
+        /// Start the client order
+        /// </summary>
         public void ClientOrder()
         {
             order = newBl.newOrder();
@@ -25,6 +27,9 @@ namespace IceCreamShop1
 
         }
 
+        /// <summary>
+        /// save the cup selection of the user
+        /// </summary>
         private void choose_Cup(object sender, System.EventArgs e)
         {
             Cups cup = new Cups();
@@ -47,6 +52,8 @@ namespace IceCreamShop1
                 cup = Cups.Box;
             }
             this.order.chooseCup(cup);
+            this.priceLabel.Text = "Price: " + order.price;
+            this.priceLabel.Refresh();
             Console.WriteLine(cup.ToString());
         }
 
@@ -82,6 +89,8 @@ namespace IceCreamShop1
                 string selected_top = this.toppingListbox.SelectedItem.ToString();
                 this.order.addTop((Toppings)Enum.Parse(typeof(Toppings), selected_top));
                 this.order_summary.Items.Add(selected_top);
+                this.priceLabel.Text = "Price: " + order.price;
+                this.priceLabel.Refresh();
             }
             catch(Exception err)
             {
@@ -91,10 +100,6 @@ namespace IceCreamShop1
         }
 
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         /// <summary>
         /// The main function for the flavor buttons.
@@ -109,6 +114,8 @@ namespace IceCreamShop1
                 string choosen_flavor = ((Button)sender).Text;
                 this.order.addFlavor((Flavor)Enum.Parse(typeof(Flavor), choosen_flavor));
                 this.order_summary.Items.Add(choosen_flavor);
+                this.priceLabel.Text = "Price: " + order.price;
+                this.priceLabel.Refresh();
             }
             catch (Exception err)
             {
@@ -116,10 +123,6 @@ namespace IceCreamShop1
             }
         }
 
-        private void selected_flavor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //no use delete later
-        }
 
         /// <summary>
         /// Rest the order
@@ -132,12 +135,22 @@ namespace IceCreamShop1
             reset_order(order);
         }
 
+        /// <summary>
+        /// send the order to the BL when the user press the proceed button 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void proceed_button_click(object sender, EventArgs e)
         {
             newBl.insertOrder(order);
             reset_order(order);
         }
 
+        /// <summary>
+        /// Rest the order when reset button clicked.
+        /// The reset button save the order as an uncompleted order.
+        /// </summary>
+        /// <param name="order"> current order</param>
         public void reset_order(Order order)
         {
             this.order = newBl.newOrder();
@@ -145,14 +158,23 @@ namespace IceCreamShop1
             this.regular.Enabled = true;
             this.special.Enabled = true;
             this.box.Enabled = true;
+            this.priceLabel.Text = "Price: " + 0;
+            this.priceLabel.Refresh();
         }
-        private void button2_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// rest all the database data when the initDB button is clicked.
+        /// </summary>
+        private void initDBButton_Click(object sender, EventArgs e)
         {
             newBl.initDB();
             initDBButton.Enabled = false;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Open the manager setting window.
+        /// </summary>
+        private void managerButton_Click(object sender, EventArgs e)
         {
             Form2 newform = new Form2(newBl,order);
             

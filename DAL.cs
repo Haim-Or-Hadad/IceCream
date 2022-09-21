@@ -9,13 +9,18 @@ namespace DataAccessLayer
 {
     class SqlAccess
     {
-
+        /// <summary>
+        /// Create a connection to the sql server
+        /// </summary>
+        /// <returns>connection to the server</returns>
         public SqlConnection connectSql()
         {
             try
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-                builder.ConnectionString = @"Server=DESKTOP-F06T9D8\SQLEXPRESS;Database=OurIceCream;Trusted_Connection=True;";
+                builder.ConnectionString = @"Server=localhost\SQLEXPRESS;Database=OurIceCream;Trusted_Connection=True;";
+
+                //builder.ConnectionString = @"Server=DESKTOP-F06T9D8\SQLEXPRESS;Database=OurIceCream;Trusted_Connection=True;";
                 SqlConnection conn = new SqlConnection(builder.ConnectionString);
                 return conn;
             }
@@ -26,7 +31,10 @@ namespace DataAccessLayer
             throw new ArgumentException("Couldn't  connect to SQL server");
         }
 
-        public Boolean CreateDatabase()
+        /// <summary>
+        /// Crate the icecream shop db
+        /// </summary>
+        public void CreateDatabase()
         {
             try
             {
@@ -40,10 +48,12 @@ namespace DataAccessLayer
             {
                 Console.WriteLine(ex.ToString());
             }
-            return true;
         }
 
-        public Boolean createTables()
+        /// <summary>
+        /// Create the Ingredients, Dishes and Sales tables
+        /// </summary>
+        public void createTables()
         {
 
             SqlConnection connection = connectSql();
@@ -72,30 +82,25 @@ namespace DataAccessLayer
 
                 cmd = new SqlCommand(sql, connection);
                 cmd.ExecuteNonQuery();
+
+                sql = "IF OBJECT_ID('Ingredients') IS NOT NULL DROP TABLE Ingredients;" +
+                       "CREATE TABLE Ingredients ( " +
+                       "ingredID INT NOT NULL PRIMARY KEY IDENTITY(1,1)," +
+                       "name VARCHAR(20) NULL);";
+                cmd = new SqlCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
-            return true;
         }
 
-        public Boolean createIngred()
-        {
-            SqlConnection connection = connectSql();
-            connection.Open();
-            SqlCommand cmd;
-            string sql;
-            sql = "IF OBJECT_ID('Ingredients') IS NOT NULL DROP TABLE Ingredients;" +
-                        "CREATE TABLE Ingredients ( " +
-                        "ingredID INT NOT NULL PRIMARY KEY IDENTITY(1,1)," +
-                        "name VARCHAR(20) NULL);";
-            cmd = new SqlCommand(sql, connection);
-            cmd.ExecuteNonQuery();
-            return true;
-        }
-
-        public Boolean fillIngred()
+        /// <summary>
+        /// fill the ingredients table
+        /// </summary>
+        public void fillIngred()
         {
             SqlConnection connection = connectSql();
             connection.Open();
@@ -124,10 +129,14 @@ namespace DataAccessLayer
                 cmd = new SqlCommand(sql, connection);
                 cmd.ExecuteNonQuery();
             }
-            return true;
         }
 
-
+        /// <summary>
+        /// Insert the order given by the user to the data base.
+        /// iterating over the order and add each element by the id givin to him in the enum class.
+        /// </summary>
+        /// <param name="order">the current order</param>
+        /// <exception cref="Exception"></exception>
         public void insertToDB(Order order)
         {
             SqlConnection connection = connectSql();
@@ -138,7 +147,12 @@ namespace DataAccessLayer
             sql = $"INSERT INTO Sales VALUES('{order.date}','{order.price}');";
             cmd = new SqlCommand(sql, connection);
             cmd.ExecuteNonQuery();
-            int[] ingredients_list = new int[14];
+            int[] ingredients_list = new int[16];
+            if(order.BallFlavors.Count < 2 && order.Topp.Count >=1 && order.cupType==Cups.Reagular)
+            {
+                throw new Exception("You need 2 ice cream balls to add toppings in a reagular cup");
+            }
+            ingredients_list[(int)order.cupType]++;
             foreach (var flavor in order.BallFlavors)
             {
                 ingredients_list[(int)flavor]++;
@@ -161,6 +175,12 @@ namespace DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// return sale summary of the given date.
+        /// include avarage sale price, total money earend and total sales made.
+        /// </summary>
+        /// <param name="date">date</param>
+        /// <returns>Sale summary of the given date</returns>
         public string SalesSum(string date)
         {
             int avag = 0;
@@ -193,6 +213,11 @@ namespace DataAccessLayer
             return dailySales;
         }
 
+        /// <summary>
+        /// return all the unfinished sales.
+        /// unfinished sales are sales there price is saved with -1 when the rest button is pressed.
+        /// </summary>
+        /// <returns>all the unfinished sales</returns>
         public string UnfinishedSale()
         {
 
@@ -210,58 +235,74 @@ namespace DataAccessLayer
             return unfinishedData;
         }
 
-        public string best_falvor()
+        /// <summary>
+        /// Return the name id and amount of the best selling item according to the selector.
+        /// </summary>
+        /// <param name="selector">
+        /// 0-best flavor
+        /// 1-best topping
+        /// 2-overall
+        /// </param>
+        /// <returns>Best seller according to the category</returns>
+        public string BestSellers(int selector)
         {
             SqlConnection connection = connectSql();
             connection.Open();
-            string popularFlavor = "The the most popular flavor is: \n";
-            string sql = $"SELECT TOP(1) *" +
-                         "FROM Ingredients "+
-                         "INNER JOIN"+
-                         "(SELECT SUM(amount) as total , " +
-                         "ingredID " +
-                         "FROM Dishes "+
-                         "WHERE ingredID >= 4 AND ingredID <=13 " +
-                         "GROUP BY ingredID) as table1 " +
-                         "ON table1.ingredID = Ingredients.ingredID "+
-                         "ORDER BY table1.total DESC;";
+            string popularSelection = "";
+            string sql = "";
+            if (selector == 0)
+            {
+                popularSelection = "The the most popular flavor is: \n";
+                sql = $"SELECT TOP(1) *" +
+                             "FROM Ingredients " +
+                             "INNER JOIN" +
+                             "(SELECT SUM(amount) as total , " +
+                             "ingredID " +
+                             "FROM Dishes " +
+                             "WHERE ingredID >= 4 AND ingredID <=13 " +
+                             "GROUP BY ingredID) as table1 " +
+                             "ON table1.ingredID = Ingredients.ingredID " +
+                             "ORDER BY table1.total DESC;";
+            }
+            else if (selector == 1)
+            {
+                popularSelection = "The the most popular topping is: \n";
+                 sql = $"SELECT TOP(1) *" +
+                             "FROM Ingredients " +
+                             "INNER JOIN" +
+                             "(SELECT SUM(amount) as total , " +
+                             "ingredID " +
+                             "FROM Dishes " +
+                             "WHERE ingredID >= 1 AND ingredID <=3 " +
+                             "GROUP BY ingredID) as table1 " +
+                             "ON table1.ingredID = Ingredients.ingredID " +
+                             "ORDER BY table1.total DESC;";
+            }
+            else
+            {
+                popularSelection = "The the most popular item is: \n";
+                sql = $"SELECT TOP(1) *" +
+                            "FROM Ingredients " +
+                            "INNER JOIN" +
+                            "(SELECT SUM(amount) as total , " +
+                            "ingredID " +
+                            "FROM Dishes " +
+                            "GROUP BY ingredID) as table1 " +
+                            "ON table1.ingredID = Ingredients.ingredID " +
+                            "ORDER BY table1.total DESC;";
+            }
+
             SqlCommand cmd = new SqlCommand(sql, connection);
             SqlDataReader Sqlreader = cmd.ExecuteReader();
             while (Sqlreader.Read())
             {
-                popularFlavor +=  "ID: " + Sqlreader["ingredID"].ToString() + " Name: " + Sqlreader["name"].ToString() + " Total bought: " + Sqlreader["total"].ToString();
+                popularSelection +=  "ID: " + Sqlreader["ingredID"].ToString() + " Name: " + Sqlreader["name"].ToString() + " Total bought: " + Sqlreader["total"].ToString();
             }
             Sqlreader.Close();
 
-            return popularFlavor;
+            return popularSelection;
         }
 
-        public string best_topping()
-        {
-            SqlConnection connection = connectSql();
-            connection.Open();
-            string popularTopping = "The the most popular topping is: \n";
-            string sql = $"SELECT TOP(1) *" +
-                         "FROM Ingredients " +
-                         "INNER JOIN" +
-                         "(SELECT SUM(amount) as total , " +
-                         "ingredID " +
-                         "FROM Dishes " +
-                         "WHERE ingredID >= 1 AND ingredID <=3 " +
-                         "GROUP BY ingredID) as table1 " +
-                         "ON table1.ingredID = Ingredients.ingredID " +
-                         "ORDER BY table1.total DESC;";
-            SqlCommand cmd = new SqlCommand(sql, connection);
-            SqlDataReader Sqlreader = cmd.ExecuteReader();
-            while (Sqlreader.Read())
-            {
-                popularTopping +=
-                    "SID: " + Sqlreader["ingredID"].ToString() + " Name: " + Sqlreader["name"].ToString() + " Total bought: " + Sqlreader["total"].ToString();
-            }
-            Sqlreader.Close();
-
-            return popularTopping;
-        }
 
     }
 
