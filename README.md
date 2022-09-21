@@ -23,6 +23,8 @@ Save your customers orders and get your shop statistics in the manager settings 
 - **Unfinished Order**  - Show you the number of uncompleted orders in the database.
 - **Current Bill**  - Bill that show the cost of the order.
 - **Best Topping/Flavor**  - Show the most popular ice cream topping/flavor.
+- **Best selling item**  - Show the most popular ice cream item in the shop.
+
 
 
 ## Requirement
