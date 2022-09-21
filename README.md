@@ -7,7 +7,7 @@ Save your customers orders and get your shop statistics in the manager settings 
 
 **_Main Window:_**
 
-<img src="https://user-images.githubusercontent.com/74299935/190920045-705ea82b-9f1e-4c9c-ac58-c4c91711ee39.jpg" width="80%">
+<img src="https://user-images.githubusercontent.com/74299935/191500491-655a62b6-f207-452e-bce6-7974273218b6.jpg" width="80%">
 
 - **Initalize DB**  - Reset the database
 - **Manager Settings**  - Customer receipts , selling statistics and database options.
@@ -16,7 +16,7 @@ Save your customers orders and get your shop statistics in the manager settings 
 
 **_Manager Settings Window:_**
 
-<img src="https://user-images.githubusercontent.com/74299935/190920318-3b3ea2b7-6cbd-44ee-9a7c-bff6b555c09e.jpg" width="80%">
+<img src="https://user-images.githubusercontent.com/74299935/191500565-2d4b43a8-1779-450d-864d-7250f30dad12.jpg" width="80%">
 
 - **Change DB**  - Select which database you want to work with SQL (SSMS) or NoSQL (mongodb)
 - **Daily Report**  - Enter a date and get a report of all sales made at that date. (number of sales, Income ,Average Daily Sales)
